@@ -4,6 +4,7 @@ import cors from "cors";
 import { connectDb } from "./config/database.js";
 import handleErrors from "./middlewares/handleErrorsMiddleware.js";
 import companiesRouter from "./routes/companiesRouter.js";
+import authenticationRouter from "./routes/authenticationRouter.js";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app
   .use(json())
   .get("/health", (_req, res) => res.send("OK!"))
   .use("/companies", companiesRouter)
+  .use("/auth", authenticationRouter)
   .use(handleErrors);
 
 export async function init(): Promise<Express> {

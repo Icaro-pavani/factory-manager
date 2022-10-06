@@ -1,10 +1,9 @@
 import Joi from "joi";
 import { Company } from "../repositories/companiesRepository.js";
 
-export type CreateCompanyParams = Omit<Company, "_id">;
+export type CompanySignInParams = Omit<Company, "_id" | "name">;
 
-export const createCompanySchema = Joi.object<CreateCompanyParams>({
-  name: Joi.string().required(),
+export const companySignInSchema = Joi.object<CompanySignInParams>({
   cnpj: Joi.string().required(),
   password: Joi.string().min(6).required(),
 });
