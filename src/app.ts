@@ -1,12 +1,26 @@
-import express, { json } from "express";
+import express, { json, Express } from "express";
 import "express-async-errors";
 import cors from "cors";
+import { connectDb } from "./config/database.js";
+import handleErrors from "./middlewares/handleErrorsMiddleware.js";
+import companiesRouter from "./routes/companiesRouter.js";
 
 const app = express();
 
 app
   .use(cors())
   .use(json())
-  .get("/health", (_req, res) => res.send("OK!"));
+  .get("/health", (_req, res) => res.send("OK!"))
+  .use("/companies", companiesRouter)
+  .use(handleErrors);
+
+export async function init(): Promise<Express> {
+  try {
+    await connectDb();
+    return Promise.resolve(app);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export default app;
