@@ -20,3 +20,11 @@ export async function createUnit(name: string, userId: string) {
 
   await unitsRepository.createUnit(unitData);
 }
+
+export async function getAllUnits(userId: string) {
+  const user = await usersRepository.findById(userId);
+
+  const units = await unitsRepository.findAllByCompanyId(user.companyId);
+
+  return units;
+}

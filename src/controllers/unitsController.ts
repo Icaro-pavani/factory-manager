@@ -11,3 +11,14 @@ export async function unitCreation(req: AuthenticatedRequest, res: Response) {
 
   res.sendStatus(201);
 }
+
+export async function getCompanyUnits(
+  req: AuthenticatedRequest,
+  res: Response
+) {
+  const userId = req.id;
+
+  const units = await unitService.getAllUnits(userId);
+
+  res.status(200).send({ units });
+}
