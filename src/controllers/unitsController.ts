@@ -31,3 +31,12 @@ export async function getCompanyUnits(
 
   res.status(200).send({ units });
 }
+
+export async function deleteUnit(req: AuthenticatedRequest, res: Response) {
+  const unitId = req.params.id;
+  const userId = req.id;
+
+  await unitService.deleteUnit(userId, unitId);
+
+  res.sendStatus(200);
+}

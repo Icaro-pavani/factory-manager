@@ -22,9 +22,7 @@ export async function createUnit(name: string, userId: string) {
 }
 
 export async function updateUnit(name: string, unitId: string) {
-  const unitRegistered = await unitsRepository.findById(unitId);
-
-  if (!unitRegistered) throw notFoundError("Unit not found!");
+  const unitRegistered = await getUnitOrFail(unitId);
 
   const unitData = createUnitData(name, unitRegistered.companyId);
 
@@ -37,6 +35,24 @@ export async function getAllUnits(userId: string) {
   const units = await unitsRepository.findAllByCompanyId(user.companyId);
 
   return units;
+}
+
+export async function deleteUnit(userId: string, unitId: string) {
+  const user = await usersRepository.findById(userId);
+  const unitRegistered = await getUnitOrFail(unitId);
+
+  if (user.companyId !== unitRegistered.companyId)
+    throw conflictError("This unit doesn't belong to your company!");
+
+  await unitsRepository.remove(unitId);
+}
+
+async function getUnitOrFail(unitId: string) {
+  const unitRegistered = await unitsRepository.findById(unitId);
+
+  if (!unitRegistered) throw notFoundError("Unit not found!");
+
+  return unitRegistered;
 }
 
 function createUnitData(name: string, companyId: string): UnitParams {

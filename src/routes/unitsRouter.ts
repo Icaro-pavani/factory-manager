@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  deleteUnit,
   getCompanyUnits,
   unitCreation,
   updateUnit,
@@ -14,6 +15,7 @@ unitsRouter
   .all("/*", validateToken)
   .post("/", validateSchema(createUnitSchema), unitCreation)
   .get("/", getCompanyUnits)
-  .put("/:id", updateUnit);
+  .put("/:id", updateUnit)
+  .delete("/:id", deleteUnit);
 
 export default unitsRouter;
