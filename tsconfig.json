@@ -3,9 +3,10 @@
     "esModuleInterop": true,
     "module": "es6",
     "moduleResolution": "node",
-    "outDir": "dist"
+    "outDir": "dist",
+    "noImplicitAny": true
   },
-  "include": ["src/**/*", "prisma"],
+  "include": ["src/**/*"],
   "ts-node": {
     "esm": true
   }

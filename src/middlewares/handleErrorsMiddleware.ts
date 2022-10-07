@@ -30,9 +30,12 @@ export default async function handleErrors(
   res: Response,
   _next: NextFunction
 ) {
+  const errorName = error.name as ErrorNames;
   if (error.name) {
-    return res.status(serviceErrorToStatusCode[error.name]).send(error.message);
+    return res.status(serviceErrorToStatusCode[errorName]).send(error.message);
   }
 
   return res.sendStatus(500);
 }
+
+type ErrorNames = "conflict" | "unprocessable" | "unauthorized" | "notFound";
