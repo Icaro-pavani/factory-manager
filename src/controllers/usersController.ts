@@ -22,3 +22,12 @@ export async function getUsersByCompany(
 
   res.status(200).send({ users });
 }
+
+export async function deleteUser(req: AuthenticatedRequest, res: Response) {
+  const companyId = req.id;
+  const userId = req.params.id;
+
+  await userService.deleteUserById(userId, companyId);
+
+  res.sendStatus(200);
+}

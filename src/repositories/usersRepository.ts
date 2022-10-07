@@ -17,6 +17,10 @@ export async function findAllByCompanyId(companyId: string) {
   return db.collection<User>("users").find({ companyId }).toArray();
 }
 
+export async function remove(id: string) {
+  return db.collection("users").deleteOne({ _id: new ObjectId(id) });
+}
+
 export interface User {
   _id: ObjectId;
   name: string;

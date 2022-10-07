@@ -1,5 +1,8 @@
 import bcrypt from "bcrypt";
-import { conflictError } from "../middlewares/handleErrorsMiddleware.js";
+import {
+  conflictError,
+  notFoundError,
+} from "../middlewares/handleErrorsMiddleware.js";
 import * as usersRepository from "../repositories/usersRepository.js";
 
 export async function createUser(
@@ -27,6 +30,19 @@ export async function createUser(
 
 export async function getCompaniesUsers(companyId: string) {
   const users = await usersRepository.findAllByCompanyId(companyId);
-
   return users;
+}
+
+export async function deleteUserById(userId: string, companyId: string) {
+  const user = await usersRepository.findById(userId);
+
+  if (!user) {
+    throw notFoundError("No user found with this id");
+  }
+
+  if (companyId !== user.companyId) {
+    throw conflictError("This user belongs to other company!");
+  }
+
+  await usersRepository.remove(userId);
 }
