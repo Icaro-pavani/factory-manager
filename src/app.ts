@@ -6,6 +6,7 @@ import handleErrors from "./middlewares/handleErrorsMiddleware.js";
 import companiesRouter from "./routes/companiesRouter.js";
 import authenticationRouter from "./routes/authenticationRouter.js";
 import usersRouter from "./routes/usersRouter.js";
+import unitsRouter from "./routes/unitsRouter.js";
 
 const app = express();
 
@@ -16,6 +17,7 @@ app
   .use("/companies", companiesRouter)
   .use("/auth", authenticationRouter)
   .use("/users", usersRouter)
+  .use("/units", unitsRouter)
   .use(handleErrors);
 
 export async function init(): Promise<Express> {

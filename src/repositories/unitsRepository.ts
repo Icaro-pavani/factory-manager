@@ -23,10 +23,8 @@ export async function findById(id: string) {
   return db.collection<Unit>("units").findOne({ _id: new ObjectId(id) });
 }
 
-export async function findByIdAndCompanyId(unitId: string, companyId: string) {
-  return db
-    .collection<Unit>("units")
-    .findOne({ _id: new ObjectId(unitId), companyId });
+export async function findByNameAndCompanyId(name: string, companyId: string) {
+  return db.collection<Unit>("units").findOne({ name, companyId });
 }
 
 export interface Unit {
