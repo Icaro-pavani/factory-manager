@@ -12,6 +12,15 @@ export async function unitCreation(req: AuthenticatedRequest, res: Response) {
   res.sendStatus(201);
 }
 
+export async function updateUnit(req: AuthenticatedRequest, res: Response) {
+  const unitId = req.params.id;
+  const { name } = req.body as CreateUnitParams;
+
+  await unitService.updateUnit(name, unitId);
+
+  res.sendStatus(200);
+}
+
 export async function getCompanyUnits(
   req: AuthenticatedRequest,
   res: Response

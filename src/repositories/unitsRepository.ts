@@ -8,7 +8,7 @@ export async function createUnit(unitData: UnitParams) {
 export async function updateUnit(unitId: string, unitData: UnitParams) {
   return db
     .collection("units")
-    .updateOne({ _id: new ObjectId(unitId) }, unitData);
+    .updateOne({ _id: new ObjectId(unitId) }, { $set: unitData });
 }
 
 export async function remove(unitId: string) {
