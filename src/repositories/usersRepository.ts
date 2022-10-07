@@ -14,7 +14,7 @@ export async function createUser(userData: UserParams) {
 }
 
 export async function findAllByCompanyId(companyId: string) {
-  return db.collection<User[]>("users").find({ companyId });
+  return db.collection<User>("users").find({ companyId }).toArray();
 }
 
 export interface User {

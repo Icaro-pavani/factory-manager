@@ -24,3 +24,9 @@ export async function createUser(
   };
   await usersRepository.createUser(userData);
 }
+
+export async function getCompaniesUsers(companyId: string) {
+  const users = await usersRepository.findAllByCompanyId(companyId);
+
+  return users;
+}

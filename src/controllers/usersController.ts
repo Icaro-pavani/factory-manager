@@ -11,3 +11,14 @@ export async function userCreation(req: AuthenticatedRequest, res: Response) {
 
   res.sendStatus(201);
 }
+
+export async function getUsersByCompany(
+  req: AuthenticatedRequest,
+  res: Response
+) {
+  const companyId = req.id;
+
+  const users = await userService.getCompaniesUsers(companyId);
+
+  res.status(200).send({ users });
+}
