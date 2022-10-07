@@ -11,7 +11,7 @@ export async function signInCompany(cnpj: string, password: string) {
 
   await validatePasswordOrFail(password, company.password);
 
-  const token = tokenAPI.generateToken(company._id, "company");
+  const token = tokenAPI.generateToken(company._id.toString(), "company");
 
   return token;
 }

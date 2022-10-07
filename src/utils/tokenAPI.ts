@@ -6,11 +6,11 @@ const secretKey = process.env.JWT_KEY;
 type TypeUser = "user" | "company";
 
 export type JWTPayload = {
-  id: ObjectId;
+  id: string;
   type: TypeUser;
 };
 
-function generateToken(id: ObjectId, type: TypeUser) {
+function generateToken(id: string, type: TypeUser) {
   return jwt.sign({ id, type }, secretKey);
 }
 

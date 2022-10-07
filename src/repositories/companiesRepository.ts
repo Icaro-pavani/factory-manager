@@ -10,6 +10,10 @@ export async function findByCnpj(cnpj: string) {
   return db.collection<Company>("companies").findOne({ cnpj });
 }
 
+export async function findById(id: string) {
+  return db.collection<Company>("companies").findOne({ _id: new ObjectId(id) });
+}
+
 export interface Company {
   _id: ObjectId;
   name: string;
