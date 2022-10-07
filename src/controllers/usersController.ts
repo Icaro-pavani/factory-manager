@@ -12,6 +12,16 @@ export async function userCreation(req: AuthenticatedRequest, res: Response) {
   res.sendStatus(201);
 }
 
+export async function updateUser(req: AuthenticatedRequest, res: Response) {
+  const companyId = req.id;
+  const userId = req.params.id;
+  const { name, cpf, password } = req.body as CreateUserParams;
+
+  await userService.updateUser(name, cpf, password, companyId, userId);
+
+  res.sendStatus(200);
+}
+
 export async function getUsersByCompany(
   req: AuthenticatedRequest,
   res: Response

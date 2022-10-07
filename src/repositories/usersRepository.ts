@@ -21,6 +21,12 @@ export async function remove(id: string) {
   return db.collection("users").deleteOne({ _id: new ObjectId(id) });
 }
 
+export async function update(id: string, userData: UserParams) {
+  return db
+    .collection("users")
+    .updateOne({ _id: new ObjectId(id) }, { $set: userData });
+}
+
 export interface User {
   _id: ObjectId;
   name: string;

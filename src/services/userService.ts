@@ -11,21 +11,30 @@ export async function createUser(
   password: string,
   companyId: string
 ) {
-  const SALT = 10;
   const userRegistered = await usersRepository.findByCpf(cpf);
 
   if (userRegistered) {
     throw conflictError("This cpf has already been registered!");
   }
 
-  const hashPassword = bcrypt.hashSync(password, SALT);
-  const userData: usersRepository.UserParams = {
-    name,
-    cpf,
-    password: hashPassword,
-    companyId,
-  };
+  const userData = createUserData(name, cpf, password, companyId);
   await usersRepository.createUser(userData);
+}
+
+export async function updateUser(
+  name: string,
+  cpf: string,
+  password: string,
+  companyId: string,
+  userId: string
+) {
+  const user = await usersRepository.findById(userId);
+
+  if (!user) throw notFoundError("User not found!");
+
+  const userData = createUserData(name, cpf, password, companyId);
+
+  await usersRepository.update(userId, userData);
 }
 
 export async function getCompaniesUsers(companyId: string) {
@@ -37,7 +46,7 @@ export async function deleteUserById(userId: string, companyId: string) {
   const user = await usersRepository.findById(userId);
 
   if (!user) {
-    throw notFoundError("No user found with this id");
+    throw notFoundError("User not found!");
   }
 
   if (companyId !== user.companyId) {
@@ -45,4 +54,22 @@ export async function deleteUserById(userId: string, companyId: string) {
   }
 
   await usersRepository.remove(userId);
+}
+
+function createUserData(
+  name: string,
+  cpf: string,
+  password: string,
+  companyId: string
+) {
+  const SALT = 10;
+  const hashPassword = bcrypt.hashSync(password, SALT);
+  const userData: usersRepository.UserParams = {
+    name,
+    cpf,
+    password: hashPassword,
+    companyId,
+  };
+
+  return userData;
 }
