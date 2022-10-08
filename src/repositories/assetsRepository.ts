@@ -5,10 +5,10 @@ export async function createAsset(unitData: AssetParams) {
   return db.collection("assets").insertOne(unitData);
 }
 
-export async function updateAsset(assetId: string, unitData: AssetParams) {
+export async function updateAsset(assetId: string, assetData: AssetParams) {
   return db
     .collection("assets")
-    .updateOne({ _id: new ObjectId(assetId) }, { $set: unitData });
+    .updateOne({ _id: new ObjectId(assetId) }, { $set: assetData });
 }
 
 export async function remove(assetId: string) {
@@ -29,6 +29,10 @@ export async function findById(id: string) {
 
 export async function findByNameAndUnitId(name: string, unitId: string) {
   return db.collection<Asset>("assets").findOne({ name, unitId });
+}
+
+export async function removeAllByUnitId(unitId: string) {
+  return db.collection("assets").deleteMany({ unitId });
 }
 
 export interface Asset {

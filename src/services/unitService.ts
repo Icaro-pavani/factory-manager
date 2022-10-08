@@ -1,6 +1,7 @@
 import { UnitParams } from "../repositories/unitsRepository.js";
 import * as usersRepository from "../repositories/usersRepository.js";
 import * as unitsRepository from "../repositories/unitsRepository.js";
+import * as assetsRepository from "../repositories/assetsRepository.js";
 import {
   conflictError,
   notFoundError,
@@ -41,9 +42,13 @@ export async function deleteUnit(userId: string, unitId: string) {
   const user = await usersRepository.findById(userId);
   const unitRegistered = await getUnitOrFail(unitId);
 
-  if (user.companyId !== unitRegistered.companyId)
-    throw conflictError("This unit doesn't belong to your company!");
+  if (!unitRegistered) throw notFoundError("Unit not found!");
 
+  if (user.companyId !== unitRegistered.companyId) {
+    throw conflictError("This unit doesn't belong to your company!");
+  }
+
+  await assetsRepository.removeAllByUnitId(unitId);
   await unitsRepository.remove(unitId);
 }
 

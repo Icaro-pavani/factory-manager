@@ -32,3 +32,21 @@ export async function getAllUnitAssets(
 
   res.status(200).send({ assets });
 }
+
+export async function updateAsset(req: AuthenticatedRequest, res: Response) {
+  const assetId = req.params.id;
+  const assetInfo = req.body as CreateAssetParams;
+
+  await assetService.updateAssetById(assetId, assetInfo);
+
+  res.sendStatus(200);
+}
+
+export async function deleteAsset(req: AuthenticatedRequest, res: Response) {
+  const assetId = req.params.id;
+  const userId = req.id;
+
+  await assetService.deleteAsset(assetId, userId);
+
+  res.sendStatus(200);
+}
