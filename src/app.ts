@@ -7,6 +7,7 @@ import companiesRouter from "./routes/companiesRouter.js";
 import authenticationRouter from "./routes/authenticationRouter.js";
 import usersRouter from "./routes/usersRouter.js";
 import unitsRouter from "./routes/unitsRouter.js";
+import assetsRouter from "./routes/assetsRouter.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app
   .use("/auth", authenticationRouter)
   .use("/users", usersRouter)
   .use("/units", unitsRouter)
+  .use("/assets", assetsRouter)
   .use(handleErrors);
 
 export async function init(): Promise<Express> {
