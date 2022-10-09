@@ -8,6 +8,7 @@ import InitialPage from "./pages/InitialPage";
 import CompanySignInPage from "./pages/CompanySignInPage";
 import CompanySignUpPage from "./pages/CompanySignUpPage";
 import UserSignInPage from "./pages/UserSignInPage";
+import Alert from "./components/Alert";
 
 function App() {
   const theme = createTheme({
@@ -31,6 +32,7 @@ function App() {
               <Route path="/user/sign-in" element={<UserSignInPage />} />
             </Routes>
           </BrowserRouter>
+          <Alert />
         </AuthProvider>
       </AlertProvider>
     </ThemeProvider>
