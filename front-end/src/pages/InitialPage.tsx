@@ -25,7 +25,10 @@ export default function InitialPage() {
           text="Company Area"
           onClick={() => navigate("/company/sign-in")}
         />
-        <SelectionBox text="User Area" onClick={() => console.log("here")} />
+        <SelectionBox
+          text="User Area"
+          onClick={() => navigate("/user/sign-in")}
+        />
       </Box>
     </>
   );

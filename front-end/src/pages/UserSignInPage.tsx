@@ -1,5 +1,5 @@
-import { Box, Button, Link, TextField, Typography } from "@mui/material";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
 import PasswordInput from "../components/PasswordInput";
 
@@ -20,7 +20,7 @@ const styles = {
   },
 };
 
-export default function CompanySignInPage() {
+export default function UserSignInPage() {
   const navigate = useNavigate();
 
   return (
@@ -37,24 +37,19 @@ export default function CompanySignInPage() {
           Home Page
         </Button>
         <Typography sx={{ marginBottom: "20px" }} component="h2" variant="h4">
-          Company Sign In
+          User Sign In
         </Typography>
         <TextField
-          name="cnpj"
+          name="cpf"
           sx={styles.input}
-          label="CNPJ"
+          label="CPF"
           type="text"
           variant="outlined"
         />
         <PasswordInput name="password" sx={styles.input} label="Password" />
-        <Box sx={styles.actionsContainer}>
-          <Link component={RouterLink} to="/company/sign-up">
-            <Typography>Sign up your company!</Typography>
-          </Link>
-          <Button variant="contained" type="submit">
-            Enter
-          </Button>
-        </Box>
+        <Button variant="contained" type="submit">
+          Enter
+        </Button>
       </Box>
     </Form>
   );

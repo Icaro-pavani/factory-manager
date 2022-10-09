@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import InitialPage from "./pages/InitialPage";
 import CompanySignInPage from "./pages/CompanySignInPage";
 import CompanySignUpPage from "./pages/CompanySignUpPage";
+import UserSignInPage from "./pages/UserSignInPage";
 
 function App() {
   const theme = createTheme({
@@ -27,6 +28,7 @@ function App() {
               <Route path="/" element={<InitialPage />} />
               <Route path="/company/sign-in" element={<CompanySignInPage />} />
               <Route path="/company/sign-up" element={<CompanySignUpPage />} />
+              <Route path="/user/sign-in" element={<UserSignInPage />} />
             </Routes>
           </BrowserRouter>
         </AuthProvider>

@@ -35,6 +35,9 @@ export default function CompanySignUpPage() {
         >
           Home Page
         </Button>
+        <Typography sx={{ marginBottom: "20px" }} component="h2" variant="h4">
+          Company Sign Up
+        </Typography>
         <TextField
           name="name"
           sx={styles.input}
