@@ -62,6 +62,15 @@ async function deleteCompanyUser(token: string, userId: string) {
   await baseAPI.delete(`/users/${userId}`, config);
 }
 
+interface LoginUserData {
+  cpf: string;
+  password: string;
+}
+
+async function userSignIn(userData: LoginUserData) {
+  return baseAPI.post<{ token: string }>("/auth/users", userData);
+}
+
 const api = {
   companySignUp,
   companySignIn,
@@ -69,6 +78,7 @@ const api = {
   createCompanyUser,
   updateCompanyUser,
   deleteCompanyUser,
+  userSignIn,
 };
 
 export default api;

@@ -127,7 +127,7 @@ export default function AddUser() {
           value={formData.password}
         />
         <Button variant="contained" type="submit">
-          Add User
+          {!user ? "Add User" : "Update User"}
         </Button>
       </Box>
     </Form>
