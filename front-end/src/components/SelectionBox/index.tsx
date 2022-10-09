@@ -16,7 +16,7 @@ const styles: { box: SxProps; text: SxProps } = {
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
-    "&:hover":{
+    "&:hover": {
       backgroundColor: "#43c9b2",
     },
   },
@@ -26,6 +26,7 @@ const styles: { box: SxProps; text: SxProps } = {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
+    textAlign: "center",
   },
 };
 

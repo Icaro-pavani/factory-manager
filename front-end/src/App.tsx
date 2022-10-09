@@ -5,11 +5,13 @@ import { AlertProvider } from "./contexts/AlertContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import InitialPage from "./pages/InitialPage";
+import CompanySignInPage from "./pages/CompanySignInPage";
+import CompanySignUpPage from "./pages/CompanySignUpPage";
 
 function App() {
   const theme = createTheme({
     palette: {
-      primary: { main: "#4781cc" },
+      primary: { main: "#000" },
       secondary: { main: "#424445" },
       background: { default: "#4781cc", paper: "#fafafa" },
     },
@@ -23,6 +25,8 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<InitialPage />} />
+              <Route path="/company/sign-in" element={<CompanySignInPage />} />
+              <Route path="/company/sign-up" element={<CompanySignUpPage />} />
             </Routes>
           </BrowserRouter>
         </AuthProvider>
