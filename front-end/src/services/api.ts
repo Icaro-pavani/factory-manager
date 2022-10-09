@@ -48,11 +48,27 @@ async function createCompanyUser(token: string, userData: UserData) {
   await baseAPI.post("/users", userData, config);
 }
 
+async function updateCompanyUser(
+  token: string,
+  userData: UserData,
+  userId: string
+) {
+  const config = getConfig(token);
+  await baseAPI.put(`/users/${userId}`, userData, config);
+}
+
+async function deleteCompanyUser(token: string, userId: string) {
+  const config = getConfig(token);
+  await baseAPI.delete(`/users/${userId}`, config);
+}
+
 const api = {
   companySignUp,
   companySignIn,
   getCompanyUsers,
   createCompanyUser,
+  updateCompanyUser,
+  deleteCompanyUser,
 };
 
 export default api;

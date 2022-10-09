@@ -79,7 +79,11 @@ export default function AddUser() {
       if (!token) {
         return navigate("/");
       }
-      await api.createCompanyUser(token, formData);
+      if (!user) {
+        await api.createCompanyUser(token, formData);
+      } else {
+        await api.updateCompanyUser(token, formData, user._id);
+      }
       setUser(null);
       navigate("/app/company");
     } catch (error: Error | AxiosError | any) {
