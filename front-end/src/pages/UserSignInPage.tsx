@@ -1,9 +1,14 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, SxProps, TextField, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
 import PasswordInput from "../components/PasswordInput";
 
-const styles = {
+const styles: {
+  container: SxProps;
+  title: SxProps;
+  input: SxProps;
+  actionsContainer: SxProps;
+} = {
   container: {
     marginTop: "180px",
     width: "460px",

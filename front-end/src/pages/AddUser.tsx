@@ -1,11 +1,12 @@
-import { Box, Button, Link, SxProps, TextField, Typography } from "@mui/material";
+import { Box, Button, SxProps, TextField, Typography } from "@mui/material";
 import { AxiosError } from "axios";
-import { useState } from "react";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
 import PasswordInput from "../components/PasswordInput";
 import useAlert from "../hooks/useAlert";
 import useAuth from "../hooks/useAuth";
+import useUser from "../hooks/useUser";
 import api from "../services/api";
 import masks from "../utils/masks";
 
@@ -32,42 +33,54 @@ const styles: {
 };
 
 interface FormData {
-  cnpj: string;
+  name: string;
+  cpf: string;
   password: string;
 }
 
-export default function CompanySignInPage() {
+export default function AddUser() {
   const navigate = useNavigate();
-  const { signIn } = useAuth();
+  const { token } = useAuth();
   const { setMessage } = useAlert();
+  const { user, setUser } = useUser();
   const [formData, setFormData] = useState<FormData>({
-    cnpj: "",
+    name: "",
+    cpf: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (!token) navigate("/");
+    if (!user) return;
+
+    const { name, cpf } = user;
+    setFormData((prevState) => ({ ...prevState, name, cpf }));
+  }, [user, token, navigate]);
 
   function handleInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   }
 
-  function handleCnpjChange(event: React.ChangeEvent<HTMLInputElement>) {
-    const cnpj = masks.cnpjMask(event.target.value);
-    setFormData({ ...formData, [event.target.name]: cnpj });
+  function handleCpfChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const cpf = masks.cpfMask(event.target.value);
+    setFormData({ ...formData, [event.target.name]: cpf });
   }
 
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     setMessage(null);
 
-    if (!formData?.cnpj || !formData?.password) {
+    if (!formData?.name || !formData?.cpf || !formData?.password) {
       setMessage({ type: "error", text: "All fields are mandatory!" });
       return;
     }
 
     try {
-      const {
-        data: { token },
-      } = await api.companySignIn(formData);
-      signIn(token);
+      if (!token) {
+        return navigate("/");
+      }
+      await api.createCompanyUser(token, formData);
+      setUser(null);
       navigate("/app/company");
     } catch (error: Error | AxiosError | any) {
       if (error.response) {
@@ -80,28 +93,27 @@ export default function CompanySignInPage() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Typography variant="h1" component="h1">
-        Factory Manager
-      </Typography>
       <Box sx={styles.container}>
-        <Button
-          sx={{ marginBottom: "30px" }}
-          variant="contained"
-          onClick={() => navigate("/")}
-        >
-          Home Page
-        </Button>
         <Typography sx={{ marginBottom: "20px" }} component="h2" variant="h4">
-          Company Sign In
+          User Registry
         </Typography>
         <TextField
-          name="cnpj"
+          name="name"
           sx={styles.input}
-          label="CNPJ"
+          label="Name"
           type="text"
           variant="outlined"
-          onChange={handleCnpjChange}
-          value={formData.cnpj}
+          onChange={handleInputChange}
+          value={formData.name}
+        />
+        <TextField
+          name="cpf"
+          sx={styles.input}
+          label="CPF"
+          type="text"
+          variant="outlined"
+          onChange={handleCpfChange}
+          value={formData.cpf}
         />
         <PasswordInput
           name="password"
@@ -110,14 +122,9 @@ export default function CompanySignInPage() {
           onChange={handleInputChange}
           value={formData.password}
         />
-        <Box sx={styles.actionsContainer}>
-          <Link component={RouterLink} to="/company/sign-up">
-            <Typography>Sign up your company!</Typography>
-          </Link>
-          <Button variant="contained" type="submit">
-            Enter
-          </Button>
-        </Box>
+        <Button variant="contained" type="submit">
+          Add User
+        </Button>
       </Box>
     </Form>
   );

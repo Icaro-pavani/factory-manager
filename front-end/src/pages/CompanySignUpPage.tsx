@@ -1,4 +1,11 @@
-import { Box, Button, Link, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Link,
+  SxProps,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { AxiosError } from "axios";
 import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
@@ -8,7 +15,12 @@ import useAlert from "../hooks/useAlert";
 import api from "../services/api";
 import masks from "../utils/masks";
 
-const styles = {
+const styles: {
+  container: SxProps;
+  title: SxProps;
+  input: SxProps;
+  actionsContainer: SxProps;
+} = {
   container: {
     marginTop: "180px",
     width: "460px",

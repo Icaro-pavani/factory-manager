@@ -9,6 +9,10 @@ import CompanySignInPage from "./pages/CompanySignInPage";
 import CompanySignUpPage from "./pages/CompanySignUpPage";
 import UserSignInPage from "./pages/UserSignInPage";
 import Alert from "./components/Alert";
+import AppHeader from "./components/AppHeader";
+import CompanyMainPage from "./pages/CompanyMainPage";
+import { UserProvider } from "./contexts/UserContext";
+import AddUser from "./pages/AddUser";
 
 function App() {
   const theme = createTheme({
@@ -24,15 +28,27 @@ function App() {
       <CssBaseline />
       <AlertProvider>
         <AuthProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<InitialPage />} />
-              <Route path="/company/sign-in" element={<CompanySignInPage />} />
-              <Route path="/company/sign-up" element={<CompanySignUpPage />} />
-              <Route path="/user/sign-in" element={<UserSignInPage />} />
-            </Routes>
-          </BrowserRouter>
-          <Alert />
+          <UserProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<InitialPage />} />
+                <Route
+                  path="/company/sign-in"
+                  element={<CompanySignInPage />}
+                />
+                <Route
+                  path="/company/sign-up"
+                  element={<CompanySignUpPage />}
+                />
+                <Route path="/user/sign-in" element={<UserSignInPage />} />
+                <Route path="app" element={<AppHeader />}>
+                  <Route path="/app/company" element={<CompanyMainPage />} />
+                  <Route path="/app/company/add-user" element={<AddUser />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+            <Alert />
+          </UserProvider>
         </AuthProvider>
       </AlertProvider>
     </ThemeProvider>
