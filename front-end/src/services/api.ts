@@ -71,6 +71,22 @@ async function userSignIn(userData: LoginUserData) {
   return baseAPI.post<{ token: string }>("/auth/users", userData);
 }
 
+export interface Unit {
+  _id: string;
+  name: string;
+  companyId: string;
+}
+
+async function getUnits(token: string) {
+  const config = getConfig(token);
+  return baseAPI.get<{ units: Unit[] }>("/units", config);
+}
+
+async function deleteUnit(token: string, unitId: string) {
+  const config = getConfig(token);
+  await baseAPI.delete(`/units/${unitId}`, config);
+}
+
 const api = {
   companySignUp,
   companySignIn,
@@ -79,6 +95,8 @@ const api = {
   updateCompanyUser,
   deleteCompanyUser,
   userSignIn,
+  getUnits,
+  deleteUnit,
 };
 
 export default api;

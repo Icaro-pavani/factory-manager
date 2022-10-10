@@ -13,6 +13,7 @@ import AppHeader from "./components/AppHeader";
 import CompanyMainPage from "./pages/CompanyMainPage";
 import { UserProvider } from "./contexts/UserContext";
 import AddUser from "./pages/AddUser";
+import ShowUnits from "./pages/ShowUnits";
 
 function App() {
   const theme = createTheme({
@@ -44,6 +45,7 @@ function App() {
                 <Route path="app" element={<AppHeader />}>
                   <Route path="/app/company" element={<CompanyMainPage />} />
                   <Route path="/app/company/add-user" element={<AddUser />} />
+                  <Route path="/app/user" element={<ShowUnits />} />
                 </Route>
               </Routes>
             </BrowserRouter>

@@ -89,7 +89,7 @@ function Users({ users, setReload, reload }: UsersProps) {
             />
             <DeleteForeverTwoTone
               sx={{ cursor: "pointer" }}
-              onClick={() => handleDelete(user._id)}
+              onClick={async () => await handleDelete(user._id)}
             />
           </Box>
         </Box>
