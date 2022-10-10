@@ -39,6 +39,7 @@ export interface Asset {
   _id: ObjectId;
   name: string;
   description: string;
+  image: string;
   model: string;
   owner: string;
   status: StatusType;
