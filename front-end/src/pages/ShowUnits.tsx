@@ -8,7 +8,6 @@ import useUser from "../hooks/useUser";
 import api, { Unit } from "../services/api";
 
 export default function ShowUnits() {
-  const navigate = useNavigate();
   const { token } = useAuth();
   const [units, setUnits] = useState<Unit[]>([]);
   const [reload, setReload] = useState<boolean>(false);
@@ -24,8 +23,6 @@ export default function ShowUnits() {
     }
     loadPage();
   }, [token, reload]);
-
-  console.log(units);
 
   return (
     <Box
@@ -76,6 +73,10 @@ function Units({ units, setReload, reload }: UnitsProps) {
   const navigate = useNavigate();
   const { setUnit } = useUser();
   const { token } = useAuth();
+
+  useEffect(() => {
+    setUnit(null);
+  }, [setUnit]);
 
   function handleEdit(unit: Unit) {
     setUnit(unit);

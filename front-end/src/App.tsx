@@ -14,6 +14,8 @@ import CompanyMainPage from "./pages/CompanyMainPage";
 import { UserProvider } from "./contexts/UserContext";
 import AddUser from "./pages/AddUser";
 import ShowUnits from "./pages/ShowUnits";
+import AddUnit from "./pages/AddUnits";
+import ShowAssets from "./pages/ShowAssets";
 
 function App() {
   const theme = createTheme({
@@ -46,6 +48,8 @@ function App() {
                   <Route path="/app/company" element={<CompanyMainPage />} />
                   <Route path="/app/company/add-user" element={<AddUser />} />
                   <Route path="/app/user" element={<ShowUnits />} />
+                  <Route path="/app/user/add-unit" element={<AddUnit />} />
+                  <Route path="/app/user/show-assets" element={<ShowAssets />} />
                 </Route>
               </Routes>
             </BrowserRouter>

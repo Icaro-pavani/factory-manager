@@ -87,6 +87,41 @@ async function deleteUnit(token: string, unitId: string) {
   await baseAPI.delete(`/units/${unitId}`, config);
 }
 
+type UnitData = Omit<Unit, "_id" | "companyId">;
+
+async function createUnit(token: string, unitData: UnitData) {
+  const config = getConfig(token);
+  await baseAPI.post("/units", unitData, config);
+}
+
+async function updateUnit(token: string, unitData: UnitData, unitId: string) {
+  const config = getConfig(token);
+  await baseAPI.put(`/units/${unitId}`, unitData, config);
+}
+
+export interface Asset {
+  _id: string;
+  name: string;
+  description: string;
+  image: string;
+  model: string;
+  owner: string;
+  status: "Running" | "Alerting" | "Stopped";
+  healthLevel: number;
+  companyId: string;
+  unitId: string;
+}
+
+async function getAssets(token: string) {
+  const config = getConfig(token);
+  return baseAPI.get<{ assets: Asset[] }>("/assets", config);
+}
+
+async function deleteAssets(token: string, assetId: string) {
+  const config = getConfig(token);
+  await baseAPI.delete(`/assets/${assetId}`, config);
+}
+
 const api = {
   companySignUp,
   companySignIn,
@@ -97,6 +132,10 @@ const api = {
   userSignIn,
   getUnits,
   deleteUnit,
+  createUnit,
+  updateUnit,
+  getAssets,
+  deleteAssets,
 };
 
 export default api;

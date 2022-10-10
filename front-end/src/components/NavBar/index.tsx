@@ -91,7 +91,7 @@ export default function NavBar() {
           </ListItemButton>
           <ListItemButton
             sx={{ pl: 4 }}
-            onClick={() => navigate("/app/user/assets")}
+            onClick={() => navigate("/app/user/show-assets")}
           >
             <ListItemIcon>
               <Preview />

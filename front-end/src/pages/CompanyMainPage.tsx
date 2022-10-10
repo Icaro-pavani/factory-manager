@@ -57,6 +57,10 @@ function Users({ users, setReload, reload }: UsersProps) {
   const { setUser } = useUser();
   const { token } = useAuth();
 
+  useEffect(() => {
+    setUser(null);
+  }, [setUser]);
+
   function handleEdit(user: User) {
     setUser(user);
     navigate("/app/company/add-user");

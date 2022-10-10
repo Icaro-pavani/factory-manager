@@ -1,11 +1,13 @@
 import { createContext, useState } from "react";
-import { Unit, User } from "../services/api";
+import { Asset, Unit, User } from "../services/api";
 
 interface UserContextInterface {
   user: User | null;
   setUser: (newUser: User | null) => void;
   unit: Unit | null;
   setUnit: (newUnit: Unit | null) => void;
+  asset: Asset | null;
+  setAsset: (newUnit: Asset | null) => void;
 }
 
 interface Props {
@@ -17,9 +19,12 @@ export const UserContext = createContext<UserContextInterface | null>(null);
 export function UserProvider({ children }: Props) {
   const [user, setUser] = useState<User | null>(null);
   const [unit, setUnit] = useState<Unit | null>(null);
+  const [asset, setAsset] = useState<Asset | null>(null);
 
   return (
-    <UserContext.Provider value={{ user, setUser, unit, setUnit }}>
+    <UserContext.Provider
+      value={{ user, setUser, unit, setUnit, asset, setAsset }}
+    >
       {children}
     </UserContext.Provider>
   );
