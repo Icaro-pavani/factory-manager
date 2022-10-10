@@ -5,6 +5,7 @@ const styles: SxProps = {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
+  marginBottom: "30px",
 };
 
 interface Props {

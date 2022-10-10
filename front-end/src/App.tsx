@@ -16,6 +16,7 @@ import AddUser from "./pages/AddUser";
 import ShowUnits from "./pages/ShowUnits";
 import AddUnit from "./pages/AddUnits";
 import ShowAssets from "./pages/ShowAssets";
+import AddAsset from "./pages/AddAsset";
 
 function App() {
   const theme = createTheme({
@@ -49,7 +50,11 @@ function App() {
                   <Route path="/app/company/add-user" element={<AddUser />} />
                   <Route path="/app/user" element={<ShowUnits />} />
                   <Route path="/app/user/add-unit" element={<AddUnit />} />
-                  <Route path="/app/user/show-assets" element={<ShowAssets />} />
+                  <Route
+                    path="/app/user/show-assets"
+                    element={<ShowAssets />}
+                  />
+                  <Route path="/app/user/add-asset" element={<AddAsset />} />
                 </Route>
               </Routes>
             </BrowserRouter>

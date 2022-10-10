@@ -122,6 +122,29 @@ async function deleteAssets(token: string, assetId: string) {
   await baseAPI.delete(`/assets/${assetId}`, config);
 }
 
+type AssetData = Omit<Asset, "_id" | "companyId" | "unitId">;
+type UpdateAssetData = AssetData & {
+  unitId: string;
+};
+
+async function createAsset(
+  token: string,
+  assetData: AssetData,
+  unitId: string
+) {
+  const config = getConfig(token);
+  await baseAPI.post(`/assets/${unitId}`, assetData, config);
+}
+
+async function updateAsset(
+  token: string,
+  assetData: UpdateAssetData,
+  assetId: string
+) {
+  const config = getConfig(token);
+  await baseAPI.put(`/assets/${assetId}`, assetData, config);
+}
+
 const api = {
   companySignUp,
   companySignIn,
@@ -136,6 +159,8 @@ const api = {
   updateUnit,
   getAssets,
   deleteAssets,
+  createAsset,
+  updateAsset,
 };
 
 export default api;

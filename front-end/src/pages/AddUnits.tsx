@@ -20,7 +20,6 @@ const styles: {
   container: SxProps;
   title: SxProps;
   input: SxProps;
-  actionsContainer: SxProps;
 } = {
   container: {
     marginTop: "180px",
@@ -31,11 +30,6 @@ const styles: {
   },
   title: { marginBottom: "30px" },
   input: { marginBottom: "16px" },
-  actionsContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
 };
 
 interface FormData {

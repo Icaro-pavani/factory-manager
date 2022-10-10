@@ -7,7 +7,7 @@ interface UserContextInterface {
   unit: Unit | null;
   setUnit: (newUnit: Unit | null) => void;
   asset: Asset | null;
-  setAsset: (newUnit: Asset | null) => void;
+  setAsset: (newAsset: Asset | null) => void;
 }
 
 interface Props {

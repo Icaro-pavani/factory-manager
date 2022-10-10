@@ -40,7 +40,7 @@ export default function NavBar() {
 
   return (
     <List
-      sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+      sx={{ width: "100%", maxWidth: 260, bgcolor: "background.paper", position: "fixed" }}
       component="nav"
       aria-labelledby="options-navbar"
       subheader={<ListSubheader component="div">Options List</ListSubheader>}
