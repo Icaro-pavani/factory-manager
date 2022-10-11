@@ -1,6 +1,6 @@
 import { Response } from "express";
 import { AuthenticatedRequest } from "../middlewares/validateToken.js";
-import { CreateAssetParams } from "../schemas/assetSchemas.js";
+import { CreateAssetParams, UpdateAssetParams } from "../schemas/assetSchemas.js";
 import * as assetService from "../services/assetService.js";
 
 export async function createAsset(req: AuthenticatedRequest, res: Response) {
@@ -35,7 +35,7 @@ export async function getAllUnitAssets(
 
 export async function updateAsset(req: AuthenticatedRequest, res: Response) {
   const assetId = req.params.id;
-  const assetInfo = req.body as CreateAssetParams;
+  const assetInfo = req.body as UpdateAssetParams;
 
   await assetService.updateAssetById(assetId, assetInfo);
 

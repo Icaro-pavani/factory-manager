@@ -1,6 +1,10 @@
-import { CreateAssetParams } from "../schemas/assetSchemas.js";
+import {
+  CreateAssetParams,
+  UpdateAssetParams,
+} from "../schemas/assetSchemas.js";
 import * as usersRepository from "../repositories/usersRepository.js";
 import * as assetsRepository from "../repositories/assetsRepository.js";
+import * as unitsRepository from "../repositories/unitsRepository.js";
 import {
   conflictError,
   notFoundError,
@@ -42,17 +46,20 @@ export async function getAllUnitsAssets(unitId: string) {
 
 export async function updateAssetById(
   assetId: string,
-  assetInfo: CreateAssetParams
+  assetInfo: UpdateAssetParams
 ) {
   const asset = await assetsRepository.findById(assetId);
 
   if (!asset) throw notFoundError("Asset not found!");
 
-  const { companyId, unitId } = asset;
+  const unit = await unitsRepository.findById(assetInfo.unitId);
+
+  if (!unit) throw notFoundError("Unit not found!");
+
+  const { companyId } = asset;
   await assetsRepository.updateAsset(assetId, {
     ...assetInfo,
     companyId,
-    unitId,
   });
 }
 

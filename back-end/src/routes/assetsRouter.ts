@@ -8,7 +8,7 @@ import {
 } from "../controllers/assetsController.js";
 import validateSchema from "../middlewares/validateSchema.js";
 import validateToken from "../middlewares/validateToken.js";
-import { createAssetSchema } from "../schemas/assetSchemas.js";
+import { createAssetSchema, updateAssetSchema } from "../schemas/assetSchemas.js";
 
 const assetsRouter = Router();
 
@@ -17,7 +17,7 @@ assetsRouter
   .post("/:unitId", validateSchema(createAssetSchema), createAsset)
   .get("/", getAllAssets)
   .get("/:unitId", getAllUnitAssets)
-  .put("/:id", validateSchema(createAssetSchema), updateAsset)
+  .put("/:id", validateSchema(updateAssetSchema), updateAsset)
   .delete("/:id", deleteAsset);
 
 export default assetsRouter;
