@@ -50,8 +50,7 @@ In the application, it will be possible for you to create a company/industry and
 ## Previews
 
 <div align="center">
-   <video width="600px" control>
-      <source src="https://user-images.githubusercontent.com/40708278/195178708-68323b3e-0c6d-4aed-a7a1-579e1fab335e.mp4" type="video/mp4"/>
+   <video width="600px" src="https://user-images.githubusercontent.com/40708278/195178708-68323b3e-0c6d-4aed-a7a1-579e1fab335e.mp4" control>
    </video>
 </div>
 
