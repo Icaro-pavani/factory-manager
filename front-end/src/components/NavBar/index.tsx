@@ -40,7 +40,12 @@ export default function NavBar() {
 
   return (
     <List
-      sx={{ width: "100%", maxWidth: 260, bgcolor: "background.paper", position: "fixed" }}
+      sx={{
+        width: "100%",
+        maxWidth: 260,
+        bgcolor: "background.paper",
+        position: "fixed",
+      }}
       component="nav"
       aria-labelledby="options-navbar"
       subheader={<ListSubheader component="div">Options List</ListSubheader>}
@@ -100,35 +105,12 @@ export default function NavBar() {
           </ListItemButton>
         </List>
       </Collapse>
-      <ListItemButton onClick={handleClickChart}>
+      <ListItemButton onClick={() => navigate("/app/user/charts-all-assets")}>
         <ListItemIcon>
           <InsertChart />
         </ListItemIcon>
         <ListItemText primary="Graphs" />
-        {openChart ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
-      <Collapse in={openChart} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton
-            sx={{ pl: 4 }}
-            onClick={() => navigate("/app/user/charts-unit")}
-          >
-            <ListItemIcon>
-              <QueryStats />
-            </ListItemIcon>
-            <ListItemText primary="Condensed" />
-          </ListItemButton>
-          <ListItemButton
-            sx={{ pl: 4 }}
-            onClick={() => navigate("/app/user/chart-all-assets")}
-          >
-            <ListItemIcon>
-              <QueryStats color="secondary" />
-            </ListItemIcon>
-            <ListItemText primary="By Unit" />
-          </ListItemButton>
-        </List>
-      </Collapse>
     </List>
   );
 }

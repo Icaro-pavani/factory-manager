@@ -17,13 +17,14 @@ import ShowUnits from "./pages/ShowUnits";
 import AddUnit from "./pages/AddUnits";
 import ShowAssets from "./pages/ShowAssets";
 import AddAsset from "./pages/AddAsset";
+import ShowGraphs from "./pages/ShowGraphs";
 
 function App() {
   const theme = createTheme({
     palette: {
-      primary: { main: "#000" },
+      primary: { main: "#1c55f1" },
       secondary: { main: "#424445" },
-      background: { default: "#4781cc", paper: "#fafafa" },
+      background: { default: "#a7cdff", paper: "#fafafa" },
     },
   });
 
@@ -55,6 +56,7 @@ function App() {
                     element={<ShowAssets />}
                   />
                   <Route path="/app/user/add-asset" element={<AddAsset />} />
+                  <Route path="/app/user/charts-all-assets" element={<ShowGraphs />} />
                 </Route>
               </Routes>
             </BrowserRouter>
