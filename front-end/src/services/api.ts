@@ -71,6 +71,16 @@ async function userSignIn(userData: LoginUserData) {
   return baseAPI.post<{ token: string }>("/auth/users", userData);
 }
 
+export interface UserInfo {
+  userName: string;
+  companyName: string;
+}
+
+async function getUserInfo(token: string) {
+  const config = getConfig(token);
+  return baseAPI.get<{userInfo: UserInfo}>("/users/info-user", config);
+}
+
 export interface Unit {
   _id: string;
   name: string;
@@ -153,6 +163,7 @@ const api = {
   updateCompanyUser,
   deleteCompanyUser,
   userSignIn,
+  getUserInfo,
   getUnits,
   deleteUnit,
   createUnit,

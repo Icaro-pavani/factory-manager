@@ -4,6 +4,7 @@ import {
   notFoundError,
 } from "../middlewares/handleErrorsMiddleware.js";
 import * as usersRepository from "../repositories/usersRepository.js";
+import * as companiesRepository from "../repositories/companiesRepository.js";
 
 export async function createUser(
   name: string,
@@ -54,6 +55,17 @@ export async function deleteUserById(userId: string, companyId: string) {
   }
 
   await usersRepository.remove(userId);
+}
+
+export async function getUserInfo(userId: string) {
+  const user = await usersRepository.findById(userId);
+  if (!user) {
+    throw notFoundError("User not found!");
+  }
+
+  const company = companiesRepository.findById(user.companyId);
+
+  return { userName: user.name, companyName: (await company).name };
 }
 
 function createUserData(

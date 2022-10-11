@@ -41,3 +41,11 @@ export async function deleteUser(req: AuthenticatedRequest, res: Response) {
 
   res.sendStatus(200);
 }
+
+export async function getUserInfo(req: AuthenticatedRequest, res: Response) {
+  const userId = req.id;
+
+  const userInfo = await userService.getUserInfo(userId);
+
+  res.status(200).send({ userInfo });
+}

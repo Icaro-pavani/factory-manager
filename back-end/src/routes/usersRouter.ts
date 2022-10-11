@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   deleteUser,
+  getUserInfo,
   getUsersByCompany,
   updateUser,
   userCreation,
@@ -16,6 +17,7 @@ usersRouter
   .post("/", userCreation)
   .get("/", getUsersByCompany)
   .delete("/:id", deleteUser)
-  .put("/:id", validateSchema(createUserSchema), updateUser);
+  .put("/:id", validateSchema(createUserSchema), updateUser)
+  .get("/info-user", getUserInfo);
 
 export default usersRouter;

@@ -17,6 +17,16 @@ export async function createAsset(
 ) {
   const user = await usersRepository.findById(userId);
 
+  if (!user) {
+    throw notFoundError("User not found!");
+  }
+
+  const unit = await unitsRepository.findById(unitId);
+
+  if (!unit) {
+    throw notFoundError("User not found!");
+  }
+
   const assetRegistered = await assetsRepository.findByNameAndUnitId(
     assetInfo.name,
     unitId
