@@ -49,11 +49,13 @@ In the application, it will be possible for you to create a company/industry and
 
 ## Previews
 
+We start with the sign up of a company and the creation of an user.
+
 <div align="center">
    <video width="600px" src="https://user-images.githubusercontent.com/40708278/195178708-68323b3e-0c6d-4aed-a7a1-579e1fab335e.mp4" control>
    </video>
 </div>
 
+Next, sign in as an user to create and edit the units and assets of the company.
 
-
-
+At last, with all assets added, you can see the graphs of health level and status of all units together or separately
