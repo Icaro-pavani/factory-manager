@@ -99,33 +99,37 @@ function Units({ units, setReload, reload }: UnitsProps) {
 
   return (
     <>
-      {units.map((unit: Unit) => (
-        <Paper
-          key={unit._id}
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginTop: "10px",
-            backgroundColor: "#a1e4ff",
-            width: "300px",
-            padding: "5px",
-            minHeight: "50px",
-          }}
-        >
-          <Typography>Name: {unit.name}</Typography>
-          <Box sx={{ display: "flex" }}>
-            <EditTwoTone
-              sx={{ cursor: "pointer" }}
-              onClick={() => handleEdit(unit)}
-            />
-            <DeleteForeverTwoTone
-              sx={{ cursor: "pointer" }}
-              onClick={async () => await handleDelete(unit._id)}
-            />
-          </Box>
-        </Paper>
-      ))}
+      {units.length === 0 ? (
+        <Typography variant="h6">Create one Unit</Typography>
+      ) : (
+        units.map((unit: Unit) => (
+          <Paper
+            key={unit._id}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginTop: "10px",
+              backgroundColor: "#a1e4ff",
+              width: "300px",
+              padding: "5px",
+              minHeight: "50px",
+            }}
+          >
+            <Typography>Name: {unit.name}</Typography>
+            <Box sx={{ display: "flex" }}>
+              <EditTwoTone
+                sx={{ cursor: "pointer" }}
+                onClick={() => handleEdit(unit)}
+              />
+              <DeleteForeverTwoTone
+                sx={{ cursor: "pointer" }}
+                onClick={async () => await handleDelete(unit._id)}
+              />
+            </Box>
+          </Paper>
+        ))
+      )}
     </>
   );
 }
