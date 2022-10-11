@@ -271,4 +271,4 @@ npm start
 
 ## Deploy
 
-The link of the deployed API is [https://building-passport.herokuapp.com/](https://building-passport.herokuapp.com/)
+The link of the deployed API is [https://factory-manager-api.herokuapp.com/](https://factory-manager-api.herokuapp.com/)

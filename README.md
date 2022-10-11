@@ -58,4 +58,14 @@ We start with the sign up of a company and the creation of an user.
 
 Next, sign in as an user to create and edit the units and assets of the company.
 
-At last, with all assets added, you can see the graphs of health level and status of all units together or separately
+<div align="center">
+   <video width="600px" src="https://user-images.githubusercontent.com/40708278/195178708-68323b3e-0c6d-4aed-a7a1-579e1fab335e.mp4](https://user-images.githubusercontent.com/40708278/195184401-3763564f-5ef0-4fa5-b722-6ec5d06ad5e9.mp4" control>
+   </video>
+</div>
+
+At last, with all assets added, you can see the graphs of health level and status of all units together or separately:
+
+<div align="center">
+   <video width="600px" src="https://user-images.githubusercontent.com/40708278/195184559-96acd2c9-9faa-4020-882a-06239183035d.mp4" control>
+   </video>
+</div>
