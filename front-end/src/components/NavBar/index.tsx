@@ -6,7 +6,6 @@ import {
   InsertChart,
   PrecisionManufacturing,
   Preview,
-  QueryStats,
 } from "@mui/icons-material";
 import {
   Collapse,
@@ -22,7 +21,6 @@ import { useNavigate } from "react-router-dom";
 export default function NavBar() {
   const [openUnit, setOpenUnit] = useState(false);
   const [openAsset, setOpenAsset] = useState(false);
-  const [openChart, setOpenChart] = useState(false);
 
   const navigate = useNavigate();
 
@@ -32,10 +30,6 @@ export default function NavBar() {
 
   function handleClickAsset() {
     setOpenAsset(!openAsset);
-  }
-
-  function handleClickChart() {
-    setOpenChart(!openChart);
   }
 
   return (
