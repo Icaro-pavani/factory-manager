@@ -1,4 +1,4 @@
-import { MonitorHeart, VolumeUp } from "@mui/icons-material";
+import { MonitorHeart } from "@mui/icons-material";
 import {
   Box,
   Button,

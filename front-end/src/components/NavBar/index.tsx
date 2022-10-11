@@ -16,7 +16,6 @@ import {
   ListSubheader,
   Typography,
 } from "@mui/material";
-import { userInfo } from "os";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
