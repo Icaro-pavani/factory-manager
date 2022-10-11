@@ -26,6 +26,21 @@ export default function ShowGraphs() {
     Stopped: "#fc1e1e",
   };
 
+  const barGraphData: { x: string[]; data: { y: number; color: string }[] } = {
+    x: [],
+    data: [],
+  };
+
+  assetsFiltered.forEach((asset) => {
+    barGraphData.x.push(asset.name);
+    barGraphData.data.push({
+      y: asset.healthLevel,
+      color: colorSet[asset.status],
+    });
+  });
+
+  console.log(barGraphData);
+
   const barOptions: Highcharts.Options = {
     title: {
       text: "Assets' Health Level",
@@ -38,7 +53,7 @@ export default function ShowGraphs() {
         '<span style="color:#fc1e1e"> Stopped</span>',
     },
     xAxis: {
-      categories: assetsFiltered.map((asset) => asset.name),
+      categories: barGraphData.x,
       crosshair: true,
     },
     yAxis: {
@@ -73,10 +88,6 @@ export default function ShowGraphs() {
       {
         name: "Health Level",
         id: "main",
-        dataSorting: {
-          enabled: true,
-          matchByName: true,
-        },
         dataLabels: [
           {
             enabled: true,
@@ -87,12 +98,7 @@ export default function ShowGraphs() {
           },
         ],
         type: "column",
-        data: assetsFiltered.map((asset) => {
-          return {
-            y: asset.healthLevel,
-            color: colorSet[asset.status],
-          };
-        }),
+        data: barGraphData.data,
       },
     ],
   };
@@ -193,6 +199,16 @@ export default function ShowGraphs() {
           width: "100%",
           display: "flex",
           overflowY: "scroll",
+          "&::-webkit-scrollbar": {
+            width: 7,
+          },
+          "&::-webkit-scrollbar-track": {
+            boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "darkgrey",
+            outline: `1px solid slategrey`,
+          },
         }}
         elevation={3}
       >
