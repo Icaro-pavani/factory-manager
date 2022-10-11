@@ -18,7 +18,6 @@ import api from "../services/api";
 
 const styles: {
   container: SxProps;
-  title: SxProps;
   input: SxProps;
 } = {
   container: {
@@ -28,7 +27,6 @@ const styles: {
     flexDirection: "column",
     textAlign: "center",
   },
-  title: { marginBottom: "30px" },
   input: { marginBottom: "16px" },
 };
 
@@ -100,7 +98,7 @@ export default function AddUnit() {
       }}
     >
       <Paper
-        sx={{ backgroundColor: "#fafafa", width: "100%", display: "flex" }}
+        sx={{ backgroundColor: "background.paper", width: "100%", display: "flex" }}
         elevation={3}
       >
         <Box sx={{ marginTop: "50px", width: "250px" }}>

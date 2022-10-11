@@ -1,8 +1,9 @@
-import { Box, Button, SxProps, TextField, Typography } from "@mui/material";
+import { Box, Button, Paper, SxProps, TextField, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "../components/Form";
+import Logo from "../components/Logo";
 import PasswordInput from "../components/PasswordInput";
 import useAlert from "../hooks/useAlert";
 import useAuth from "../hooks/useAuth";
@@ -11,24 +12,17 @@ import masks from "../utils/masks";
 
 const styles: {
   container: SxProps;
-  title: SxProps;
   input: SxProps;
-  actionsContainer: SxProps;
 } = {
   container: {
     marginTop: "180px",
-    width: "460px",
+    width: "560px",
+    padding: "20px",
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
   },
-  title: { marginBottom: "30px" },
   input: { marginBottom: "16px" },
-  actionsContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
 };
 
 interface FormData {
@@ -80,10 +74,8 @@ export default function UserSignInPage() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Typography variant="h1" component="h1">
-        Factory Manager
-      </Typography>
-      <Box sx={styles.container}>
+      <Logo />
+      <Paper sx={styles.container} elevation={6}>
         <Button
           sx={{ marginBottom: "30px" }}
           variant="contained"
@@ -113,7 +105,7 @@ export default function UserSignInPage() {
         <Button variant="contained" type="submit">
           Enter
         </Button>
-      </Box>
+      </Paper>
     </Form>
   );
 }

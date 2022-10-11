@@ -58,7 +58,7 @@ export default function ShowAssets() {
     >
       <Paper
         sx={{
-          backgroundColor: "#fafafa",
+          backgroundColor: "background.paper",
           width: "100%",
           display: "flex",
           overflowY: "scroll",
@@ -147,79 +147,83 @@ function Assets({ assets, setReload, reload, unitSelected }: AssetsProps) {
 
   return (
     <>
-      {assets
-        .filter((asset) => asset.unitId === unitSelected)
-        .map((asset: Asset) => (
-          <Paper
-            sx={{
-              backgroundColor: "#5db7f3",
-              width: "80%",
-              display: "flex",
-              justifyContent: "space-between",
-              padding: "10px",
-              marginBottom: "15px",
-            }}
-            elevation={3}
-            key={asset._id}
-          >
-            <Img src={asset.image} alt={asset.name} />
-            <Box
+      {assets.filter((asset) => asset.unitId === unitSelected).length === 0 ? (
+        <Typography variant="h6">Select one Unit or add one Asset</Typography>
+      ) : (
+        assets
+          .filter((asset) => asset.unitId === unitSelected)
+          .map((asset: Asset) => (
+            <Paper
               sx={{
+                backgroundColor: "#a1e4ff",
+                width: "80%",
                 display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
+                justifyContent: "space-between",
+                padding: "10px",
+                marginBottom: "15px",
               }}
+              elevation={3}
+              key={asset._id}
             >
-              <Typography>Name: {asset.name}</Typography>
-              <Typography>Description: {asset.description}</Typography>
-              <Typography>Owner: {asset.owner}</Typography>
-              <Typography>Model: {asset.model}</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <Typography>Health-level: {asset.healthLevel}%</Typography>
-              <Typography sx={{ display: "flex", alignItems: "center" }}>
-                Status:{" "}
-                <FiberManualRecord
-                  sx={{
-                    fontSize: "15px",
-                    color: `${colorSet[asset.status]}`,
-                  }}
-                />{" "}
-                {asset.status}
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-evenly",
-              }}
-            >
-              <Button
-                sx={{ cursor: "pointer" }}
-                variant="contained"
-                color="secondary"
-                onClick={() => handleEdit(asset)}
+              <Img src={asset.image} alt={asset.name} />
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
               >
-                Edit
-              </Button>
-              <Button
-                sx={{ cursor: "pointer" }}
-                onClick={async () => await handleDelete(asset._id)}
-                variant="contained"
-                color="secondary"
+                <Typography>Name: {asset.name}</Typography>
+                <Typography>Description: {asset.description}</Typography>
+                <Typography>Owner: {asset.owner}</Typography>
+                <Typography>Model: {asset.model}</Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
               >
-                Delete
-              </Button>
-            </Box>
-          </Paper>
-        ))}
+                <Typography>Health-level: {asset.healthLevel}%</Typography>
+                <Typography sx={{ display: "flex", alignItems: "center" }}>
+                  Status:{" "}
+                  <FiberManualRecord
+                    sx={{
+                      fontSize: "15px",
+                      color: `${colorSet[asset.status]}`,
+                    }}
+                  />{" "}
+                  {asset.status}
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                }}
+              >
+                <Button
+                  sx={{ cursor: "pointer" }}
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => handleEdit(asset)}
+                >
+                  Edit
+                </Button>
+                <Button
+                  sx={{ cursor: "pointer" }}
+                  onClick={async () => await handleDelete(asset._id)}
+                  variant="contained"
+                  color="secondary"
+                >
+                  Delete
+                </Button>
+              </Box>
+            </Paper>
+          ))
+      )}
     </>
   );
 }

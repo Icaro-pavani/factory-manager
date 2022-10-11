@@ -1,4 +1,4 @@
-import { Box, Button, SxProps, TextField, Typography } from "@mui/material";
+import { Button, Paper, SxProps, TextField, Typography } from "@mui/material";
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,24 +12,17 @@ import masks from "../utils/masks";
 
 const styles: {
   container: SxProps;
-  title: SxProps;
   input: SxProps;
-  actionsContainer: SxProps;
 } = {
   container: {
     marginTop: "180px",
-    width: "460px",
+    width: "560px",
+    padding: "20px",
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
   },
-  title: { marginBottom: "30px" },
   input: { marginBottom: "16px" },
-  actionsContainer: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
 };
 
 interface FormData {
@@ -97,7 +90,7 @@ export default function AddUser() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Box sx={styles.container}>
+      <Paper sx={styles.container}>
         <Typography sx={{ marginBottom: "20px" }} component="h2" variant="h4">
           User Registry
         </Typography>
@@ -129,7 +122,7 @@ export default function AddUser() {
         <Button variant="contained" type="submit">
           {!user ? "Add User" : "Update User"}
         </Button>
-      </Box>
+      </Paper>
     </Form>
   );
 }

@@ -19,7 +19,6 @@ import masks from "../utils/masks";
 
 const styles: {
   container: SxProps;
-  title: SxProps;
   input: SxProps;
   actionsContainer: SxProps;
 } = {
@@ -31,7 +30,6 @@ const styles: {
     flexDirection: "column",
     textAlign: "center",
   },
-  title: { marginBottom: "30px" },
   input: { marginBottom: "16px" },
   actionsContainer: {
     display: "flex",
@@ -130,7 +128,7 @@ export default function CompanySignUpPage() {
             <Typography>Sign in!</Typography>
           </Link>
           <Button variant="contained" type="submit">
-            Enter
+            Sign Up
           </Button>
         </Box>
       </Paper>

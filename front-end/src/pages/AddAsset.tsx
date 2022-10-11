@@ -1,4 +1,4 @@
-import { VolumeUp } from "@mui/icons-material";
+import { MonitorHeart, VolumeUp } from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -28,7 +28,6 @@ import api, { Unit } from "../services/api";
 
 const styles: {
   container: SxProps;
-  title: SxProps;
   input: SxProps;
 } = {
   container: {
@@ -38,7 +37,6 @@ const styles: {
     flexDirection: "column",
     textAlign: "center",
   },
-  title: { marginBottom: "30px" },
   input: { marginBottom: "16px" },
 };
 
@@ -192,7 +190,7 @@ export default function AddAsset() {
     >
       <Paper
         sx={{
-          backgroundColor: "#fafafa",
+          backgroundColor: "background.paper",
           width: "100%",
           display: "flex",
           overflowY: "scroll",
@@ -310,12 +308,16 @@ export default function AddAsset() {
                 </RadioGroup>
               </FormControl>
               <Box sx={{ width: 250 }}>
-                <Typography id="input-slider" gutterBottom>
+                <Typography
+                  id="input-slider"
+                  sx={{ textAlign: "left" }}
+                  gutterBottom
+                >
                   Health Level
                 </Typography>
                 <Grid container spacing={2} alignItems="center">
                   <Grid item>
-                    <VolumeUp />
+                    <MonitorHeart />
                   </Grid>
                   <Grid item xs>
                     <Slider

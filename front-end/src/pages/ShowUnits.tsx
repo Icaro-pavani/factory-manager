@@ -38,7 +38,11 @@ export default function ShowUnits() {
       }}
     >
       <Paper
-        sx={{ backgroundColor: "#fafafa", width: "100%", display: "flex" }}
+        sx={{
+          backgroundColor: "background.paper",
+          width: "100%",
+          display: "flex",
+        }}
         elevation={3}
       >
         <Box sx={{ marginTop: "50px", width: "250px" }}>
@@ -96,15 +100,20 @@ function Units({ units, setReload, reload }: UnitsProps) {
   return (
     <>
       {units.map((unit: Unit) => (
-        <Box
+        <Paper
           key={unit._id}
           sx={{
             display: "flex",
-            width: "400px",
             justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: "10px",
+            backgroundColor: "#a1e4ff",
+            width: "300px",
+            padding: "5px",
+            minHeight: "50px",
           }}
         >
-          <Typography>{unit.name}</Typography>
+          <Typography>Name: {unit.name}</Typography>
           <Box sx={{ display: "flex" }}>
             <EditTwoTone
               sx={{ cursor: "pointer" }}
@@ -115,7 +124,7 @@ function Units({ units, setReload, reload }: UnitsProps) {
               onClick={async () => await handleDelete(unit._id)}
             />
           </Box>
-        </Box>
+        </Paper>
       ))}
     </>
   );

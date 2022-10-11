@@ -129,6 +129,12 @@ export default function ShowGraphs() {
             y: (val / assetsFiltered.length) * 100,
             sliced: true,
             selected: true,
+            color:
+              key === "Running"
+                ? "#18f035"
+                : key === "Alerting"
+                ? "#e7e42d"
+                : "#fc1e1e",
           };
         }),
       },
@@ -183,7 +189,7 @@ export default function ShowGraphs() {
     >
       <Paper
         sx={{
-          backgroundColor: "#fafafa",
+          backgroundColor: "background.paper",
           width: "100%",
           display: "flex",
           overflowY: "scroll",

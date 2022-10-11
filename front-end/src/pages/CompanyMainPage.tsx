@@ -1,5 +1,5 @@
 import { DeleteForeverTwoTone, EditTwoTone } from "@mui/icons-material";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
@@ -25,13 +25,17 @@ export default function CompanyMainPage() {
   }, [token, reload]);
 
   return (
-    <Box
+    <Paper
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         alignItems: "center",
+        width: "560px",
+        margin: "50px auto",
+        minHeight: "600px",
+        padding: "15px",
       }}
+      elevation={6}
     >
       <Button
         variant="contained"
@@ -42,7 +46,7 @@ export default function CompanyMainPage() {
       <Box>
         <Users users={users} reload={reload} setReload={setReload} />
       </Box>
-    </Box>
+    </Paper>
   );
 }
 
@@ -78,26 +82,38 @@ function Users({ users, setReload, reload }: UsersProps) {
 
   return (
     <>
-      {users.map((user: User) => (
-        <Box
-          key={user._id}
-          sx={{ display: "flex", justifyContent: "space-between" }}
-        >
-          <Typography>
-            {user.name} - CPF: {user.cpf}
-          </Typography>
-          <Box sx={{ display: "flex" }}>
-            <EditTwoTone
-              sx={{ cursor: "pointer" }}
-              onClick={() => handleEdit(user)}
-            />
-            <DeleteForeverTwoTone
-              sx={{ cursor: "pointer" }}
-              onClick={async () => await handleDelete(user._id)}
-            />
-          </Box>
-        </Box>
-      ))}
+      {users.length === 0 ? (
+        <Typography variant="h6">There is no user registered!</Typography>
+      ) : (
+        users.map((user: User) => (
+          <Paper
+            key={user._id}
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              marginTop: "10px",
+              backgroundColor: "#a1e4ff",
+              width: "300px",
+              padding: "5px",
+            }}
+          >
+            <Box>
+              <Typography>Name: {user.name}</Typography>
+              <Typography>CPF: {user.cpf}</Typography>
+            </Box>
+            <Box sx={{ display: "flex", flexDirection: "column" }}>
+              <EditTwoTone
+                sx={{ cursor: "pointer" }}
+                onClick={() => handleEdit(user)}
+              />
+              <DeleteForeverTwoTone
+                sx={{ cursor: "pointer" }}
+                onClick={async () => await handleDelete(user._id)}
+              />
+            </Box>
+          </Paper>
+        ))
+      )}
     </>
   );
 }
