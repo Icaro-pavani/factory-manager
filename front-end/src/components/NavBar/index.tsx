@@ -8,6 +8,7 @@ import {
   Preview,
 } from "@mui/icons-material";
 import {
+  Box,
   Collapse,
   List,
   ListItemButton,
@@ -56,7 +57,7 @@ export default function NavBar() {
   console.log(usersInfo);
 
   return (
-    <>
+    <Box sx={{ position: "fixed" }}>
       <Typography
         sx={{ fontSize: "16px", pl: 2, color: "primary" }}
         variant="h6"
@@ -145,6 +146,6 @@ export default function NavBar() {
           <ListItemText primary="Graphs" />
         </ListItemButton>
       </List>
-    </>
+    </Box>
   );
 }
