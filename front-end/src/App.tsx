@@ -23,8 +23,8 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: { main: "#1c55f1" },
-      secondary: { main: "#424445" },
-      background: { default: "#a7cdff", paper: "#fafafa" },
+      secondary: { main: "#26607c" },
+      background: { default: "#25616b", paper: "#f0f0f0" },
     },
   });
 

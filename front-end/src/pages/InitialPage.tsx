@@ -1,11 +1,16 @@
-import { Box, SxProps, Typography } from "@mui/material";
+import { Paper, styled, SxProps } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Logo from "../components/Logo";
 import SelectionBox from "../components/SelectionBox";
 
 const styles: SxProps = {
   display: "flex",
   justifyContent: "space-evenly",
   alignItems: "center",
+  backgroundColor: "#f0f0f0",
+  width: "70%",
+  height: "500px",
+  margin: "70px auto",
 };
 
 export default function InitialPage() {
@@ -13,23 +18,19 @@ export default function InitialPage() {
 
   return (
     <>
-      <Typography
-        sx={{ textAlign: "center", marginBottom: "100px" }}
-        variant="h1"
-        component="h1"
-      >
-        Factory Manager
-      </Typography>
-      <Box sx={styles} component="div">
+      <Logo />
+      <Paper sx={styles} elevation={6}>
         <SelectionBox
-          text="Company Area"
+          text="Access Company's Area"
           onClick={() => navigate("/company/sign-in")}
         />
         <SelectionBox
-          text="User Area"
+          text="Access User's Area"
           onClick={() => navigate("/user/sign-in")}
         />
-      </Box>
+      </Paper>
     </>
   );
 }
+
+const Img = styled("img")({});

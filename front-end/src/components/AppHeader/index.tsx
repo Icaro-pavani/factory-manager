@@ -1,7 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import useAuth from "../../hooks/useAuth";
+import Logo from "../Logo";
 
 interface Props {
   redirectPath?: string;
@@ -27,14 +28,14 @@ export default function AppHeader({ redirectPath = "/" }: Props) {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          padding: "50px",
+          padding: "5px",
+          width: "700px",
+          margin: "0 auto",
         }}
       >
-        <Typography sx={{ fontSize: "50px", fontWeight: "bold" }} variant="h1">
-          Factory Manager
-        </Typography>
+        <Logo />
         <LogoutIcon
-          sx={{ fontSize: "50px", cursor: "pointer" }}
+          sx={{ fontSize: "50px", cursor: "pointer", color: "#ffffff" }}
           onClick={handleSignOut}
         />
       </Box>

@@ -10,14 +10,14 @@ const styles: { box: SxProps; text: SxProps } = {
   box: {
     width: "250px",
     height: "250px",
-    backgroundColor: "#0d8672",
+    backgroundColor: "#1c55f1",
     borderRadius: "25px",
     boxShadow: "1px 5px 5px 5px rgba(0,0,0, 0.45)",
     display: "flex",
     alignItems: "center",
     cursor: "pointer",
     "&:hover": {
-      backgroundColor: "#43c9b2",
+      backgroundColor: "#a7cdff",
     },
   },
   text: {

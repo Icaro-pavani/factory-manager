@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Link,
+  Paper,
   SxProps,
   TextField,
   Typography,
@@ -10,6 +11,7 @@ import { AxiosError } from "axios";
 import React, { useState } from "react";
 import { Link as RouterLink, useNavigate } from "react-router-dom";
 import Form from "../components/Form";
+import Logo from "../components/Logo";
 import PasswordInput from "../components/PasswordInput";
 import useAlert from "../hooks/useAlert";
 import api from "../services/api";
@@ -23,7 +25,8 @@ const styles: {
 } = {
   container: {
     marginTop: "180px",
-    width: "460px",
+    width: "560px",
+    padding: "20px",
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
@@ -85,10 +88,8 @@ export default function CompanySignUpPage() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Typography variant="h1" component="h1">
-        Factory Manager
-      </Typography>
-      <Box sx={styles.container}>
+      <Logo />
+      <Paper sx={styles.container} elevation={6}>
         <Button
           sx={{ marginBottom: "30px" }}
           variant="contained"
@@ -132,7 +133,7 @@ export default function CompanySignUpPage() {
             Enter
           </Button>
         </Box>
-      </Box>
+      </Paper>
     </Form>
   );
 }
