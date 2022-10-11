@@ -231,9 +231,22 @@ PUT /assets/:id (authenticated)
 
 ```yml
 DELETE /assets/:id (authenticated)
-    - Route to delte an asset (id)
+    - Route to delete an asset (id)
     - headers: { "Authorization": "Bearer $token" } //User's token
     - body: {}
+```
+
+```yml
+GET /users/info-user (authenticated)
+    - Route to get user infos
+    - headers: { "Authorization": "Bearer $token" } //User's token
+    - body: {}
+    - response: {
+        "userInfo": {
+            "userName": "User's name",
+            "companyName": "Company's name"
+        }
+    }
 ```
 
 ---
