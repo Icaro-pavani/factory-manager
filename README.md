@@ -46,3 +46,15 @@ After that, inside each folder ([backend](https://github.com/Icaro-pavani/factor
 The link of the deployed Application is [https://factory-manager.vercel.app](https://factory-manager.vercel.app)
 
 In the application, it will be possible for you to create a company/industry and users, so you will be possible to add and manage the units and assets of the company.
+
+## Previews
+
+<div align="center">
+   <video width="600px" control>
+      <source src="https://user-images.githubusercontent.com/40708278/195178708-68323b3e-0c6d-4aed-a7a1-579e1fab335e.mp4" type="video/mp4"/>
+   </video>
+</div>
+
+
+
+
